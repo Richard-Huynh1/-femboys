@@ -10,7 +10,7 @@ function render() {
     const paragraph = document.createElement('p');
     paragraph.className = 'message ' + (m.role === 'user' ? 'user' : 'model');
     console.log(marked.parse(m.text));
-    paragraph.innerHTML = (m.role === 'user' ? 'You: ' : 'AI: ') + (m.role === 'model' ? marked.parse(m.text) : m.text);
+    paragraph.innerHTML = (m.role === 'user' ? 'You: ' : 'AI: ') + (m.role === 'model' ? marked.parseInline(m.text) : m.text);
     messagesEl.appendChild(paragraph);
   });
   messagesEl.scrollTop = messagesEl.scrollHeight;
