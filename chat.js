@@ -7,17 +7,18 @@ let convo = []; // {role:'user'|'model', text:string}
 function render() {
   messagesEl.innerHTML = '';
   convo.forEach(m => {
-    const div = document.createElement('div');
-    div.className = 'message ' + (m.role === 'user' ? 'user' : 'model');
-    div.textContent = (m.role === 'user' ? 'You: ' : 'AI: ') + m.text;
-    messagesEl.appendChild(div);
+    const paragraph = document.createElement('p');
+    paragraph.className = 'message ' + (m.role === 'user' ? 'user' : 'model');
+    console.log(marked.parse(m.text));
+    paragraph.innerHTML = (m.role === 'user' ? 'You: ' : 'AI: ') + (m.role === 'model' ? marked.parse(m.text) : m.text);
+    messagesEl.appendChild(paragraph);
   });
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
-async function sendToBackend(prompt) {
-  const history = convo.slice(-20).concat([{ role: 'user', text: prompt }]);
-  const res = await fetch('/api/chat', {
+async function sendToBackend() {
+  const history = convo.slice(-20);
+  const res = await fetch('http://localhost:3000/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ convo: history })

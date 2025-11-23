@@ -1,8 +1,10 @@
+require('dotenv').config();
+const cors = require('cors');
 const express = require('express');
 const fetch = (...args) => import('node-fetch').then(m => m.default(...args));
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const MODEL = (process.env.GEMINI_MODEL || 'gemini-1.5-flash').replace(/^models\//, '');
+const MODEL = (process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite').replace(/^models\//, '');
 
 if (!GEMINI_API_KEY) {
   console.warn('GEMINI_API_KEY not set. Set in environment or .env file.');
@@ -11,6 +13,7 @@ if (!GEMINI_API_KEY) {
 const app = express();
 app.use(express.json());
 app.use(express.static(__dirname));
+app.use(cors());
 
 app.post('/api/chat', async (req, res) => {
   try {
