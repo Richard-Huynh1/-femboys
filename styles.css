@@ -21,7 +21,7 @@ html, body {
 .image-frame {
   width: 100%;
   height: 100%;
-  background: #222;
+  background: #bfbfbf;
   border: 0;
   display: flex;
   align-items: center;
@@ -42,7 +42,7 @@ html, body {
   display: flex;
   flex-direction: column;
   border-left: 1px solid #333;
-  background: #1b1b1b;
+  background: #303030;
   color: #eee;
 }
 .config {
@@ -78,8 +78,8 @@ html, body {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-.message.user { color: #6cb4ff; }
-.message.model { color: #a6f3a6; }
+.message.user { color: #556e9d; }
+.message.model { color: #efa2a3; }
 .input-row {
   display: flex;
   gap: 6px;
@@ -96,7 +96,7 @@ html, body {
   font-size: 13px;
 }
 .input-row button {
-  background: #4760ff;
+  background: #556e9d;
   border: none;
   color: #fff;
   padding: 8px 14px;
